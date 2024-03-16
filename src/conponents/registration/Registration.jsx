@@ -7,6 +7,7 @@ import { IoPersonOutline } from "react-icons/io5";
 import { MdAlternateEmail } from "react-icons/md";
 import { BsEye } from "react-icons/bs";
 import { BsEyeSlash } from "react-icons/bs";
+import { Link } from 'react-router-dom'
 
 const Registration = () => {
 const validationsSchema= yup.object().shape({
@@ -114,7 +115,9 @@ const handleEyeTwo = () => {
               }}
          >Sign Up
          </button>
+         <Link to={'/login'} className='register__link'>
           <p className='register__form-p'>Already have an account? <span className='register__form-span'>Sign In Now</span></p>
+          </Link>       
        </form>
   )}
         </Formik>

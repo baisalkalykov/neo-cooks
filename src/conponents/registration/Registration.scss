@@ -71,4 +71,17 @@
     cursor: pointer;
     margin-top: 10px;
 } 
+&__form-p{
+    font:500 18px/24px 'Poppins';
+    color: #343434;
+    cursor: pointer;
+}
+&__form-span{
+    font:500 18px/24px 'Poppins';
+    color: #FA9E31;
+    cursor: pointer;
+}
+&__link{
+    text-decoration: none;
+}
 }
