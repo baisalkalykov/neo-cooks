@@ -5,8 +5,8 @@ import './Login.scss'
 import { BsEye } from "react-icons/bs";
 import { BsEyeSlash } from "react-icons/bs";
 import { MdAlternateEmail } from "react-icons/md";
-
-
+import { setUser } from '../../pages/store/slice/UserSlice';
+import { useDispatch } from 'react-redux';
 const Login = () => {
   const [show,setShow] = useState(false)
   const [password, setPassword] = useState('');
@@ -16,6 +16,7 @@ const Login = () => {
   const handleSubmit= (event)=>{
     event.preventDefault()
    }
+   const dispatch=useDispatch()
   return (
     <>
    

@@ -8,11 +8,11 @@ import Search from './pages/search/Search'
 const App = () => {
   return (
     <>
-      <SideNav />
+      {/* <SideNav /> */}
       <Routes>
         <Route path='/home' element={<Home />} />
         <Route path='/search' element={<Search />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/' element={<Login />} />
         <Route path='/registration' element={<Registration />} />
       </Routes>
     </>
