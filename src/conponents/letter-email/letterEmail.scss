@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+.letterEmail{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+&__img{
+    width: 480px;
+    height: 670px;
+}  
+&__des{
+    text-align: center;
+}
+&__title{
+    font: 500 24px/35px 'Poppins';
+    color: #212121;
+}
+&__p{
+    font: 500 20px/29px 'Poppins';
+    color: #767676;
+    margin-top: 15px;
+}
+&__span{
+    font: 500 20px/29px 'Poppins';
+    color: #212121;
+}
+&__svg{
+    margin-top: 15px;
+    font: 500 20px/29px 'Poppins';
+}
+}

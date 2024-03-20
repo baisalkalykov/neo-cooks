@@ -4,6 +4,7 @@
     padding: 0;
 }
 .login{
+    position: relative;
 &__header{
     padding: 100px 0;
      background: #FA9E31;
@@ -89,4 +90,16 @@
 &__link{
     text-decoration: none;
 }
+&__form-error{
+    width: 343px;
+    height: 50px;
+    border-radius:12px ;
+    border: 1px solid red;
+    position: absolute;
+    top: 45%;
+  }
+&__form-error-text{
+    color: red;
+    margin: 15px;
+  }
 }

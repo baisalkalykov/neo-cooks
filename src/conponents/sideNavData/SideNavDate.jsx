@@ -16,7 +16,7 @@ export const SideNavDate = [
     },
     {
         icon : <IoPersonCircleOutline className='icon' />,
-        link : '/search'
+        link : '/profile'
     }
     
 ]

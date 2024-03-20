@@ -1,0 +1,7 @@
+.profile{
+    display: grid;
+    grid-template-columns: 96px 1fr;
+&__h1{
+    text-align: center;
+}   
+}

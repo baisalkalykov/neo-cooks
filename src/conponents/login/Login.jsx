@@ -1,23 +1,51 @@
 import React from 'react'
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.scss'
 import { BsEye } from "react-icons/bs";
 import { BsEyeSlash } from "react-icons/bs";
 import { MdAlternateEmail } from "react-icons/md";
 import { setUser } from '../../pages/store/slice/UserSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
+import { fetchUser } from '../../pages/store/slice/UserSlice';
+
 const Login = () => {
   const [show,setShow] = useState(false)
   const [password, setPassword] = useState('');
+  const [username,setusername]=useState('');
+  const [error, setError] = useState(null);
   const handleEye = () => {
     setShow(!show);
   };
+  const dispatch=useDispatch()
+  const navigate= useNavigate()
   const handleSubmit= (event)=>{
     event.preventDefault()
+    try{
+      const response =dispatch(fetchUser ({
+        username,
+        password,
+      }))
+      if(response.status === 200){
+     
+          navigate('/home')
+          return 
+        }
+        throw new Error('error')
+    } catch(eror){
+      console.log(eror)
+    }setError('Неверный логин или пароль')
+    setTimeout(() => {
+      setError(null);
+    }, 5000);
+    
+    
    }
-   const dispatch=useDispatch()
-  return (
+   
+   
+ 
+   
+  return(
     <>
    
     <div className='login'>
@@ -26,26 +54,37 @@ const Login = () => {
         To  <span className='login__tex-span'>CooksCorner</span> </h2>
        </div>
       <div className="login__container">
+
          <form className='login__form' onSubmit={handleSubmit}>
+         {error && <div className="login__form-error">
+         <p className='login__form-error-text'>{error}</p>
+        </div>}
             <div className="login__form-content">
                 <label htmlFor="" className='login__form-label'>Gmail</label>
-                <input type="text" className='login__form-input' />
+                <input type="text" className='login__form-input'
+                value={username}
+                onChange={(e)=>setusername(e.target.value)} />
                 <MdAlternateEmail className='login__form-icon' />
             </div>
             <div className="login__form-content">
                 <label htmlFor="" className='login__form-label'>Password</label>
                 <input  type={show ? 'text' : 'password'}
                  className='login__form-input'
+                 value={password}
+                 onChange={(e)=>setPassword(e.target.value)}
                   />
-                <div className="login__form-icons" onClick={handleEye}>
+                <div className="login__form-icons" onClick={handleEye}
+                >
                 {show ? <BsEye className='login__form-icons'/> : <BsEyeSlash className='login__form-icons' />}
                 </div>
             </div>
-            <button className='login__form-btn'>Sign In</button>
+            <button className='login__form-btn'
+            type='submit'>Sign In</button>
             <Link to={'/registration'} className='login__link'>
             <p className='login__form-text'>I don’t have an account? <span className='login__form-span'>Sign Up Now</span> </p>
             </Link>
          </form>
+       
       </div>
     </div>
     </>
