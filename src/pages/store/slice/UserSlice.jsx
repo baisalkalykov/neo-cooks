@@ -21,6 +21,22 @@ export const addUsers = createAsyncThunk(
   }
 );
 
+export const fetchRecipes = createAsyncThunk(
+  'recipes/fetchRecipes',
+  async () => {
+    try {
+      const response = await axios.get('https://muha-backender.org.kg/recipes/',{
+        headers: { 
+          'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        }
+      });
+      return response.data; 
+    } catch (error) {
+      // Если произошла ошибка, перехватываем ее и отправляем ее в обработчик ошибок createAsyncThunk
+      throw new Error('Failed to fetch recipes');
+    }
+  }
+);
 
 export const fetchUser = createAsyncThunk(
     'user/fetchUser', 
@@ -30,7 +46,7 @@ export const fetchUser = createAsyncThunk(
         if(response.status!== 200){
             throw new Error('server error ')
         }
-        console.log(response)
+  
         localStorage.setItem('accessToken',response.data.tokens.access)
         localStorage.setItem('refreshToken',response.data.tokens.refresh)
        return response.data
@@ -69,7 +85,10 @@ export const fetchUser = createAsyncThunk(
   const initialState={
     email: null,
     token : null,
-    id : null
+    id : null,
+    recipes: [],
+    status: 'idle',
+    isAuth: false,
   };
 const userSlice =createSlice({
     name:'user',
@@ -79,6 +98,10 @@ const userSlice =createSlice({
         state.email = action.payload.email;
         state.token = action.payload.token;
         state.id = action.payload.id;
+       state.isAuth = true;
+      },
+      setRecipe(state,action){
+       state.recipes= action.payload;
       },
         addUser(state,action) {
           state.user.push(action.payload)
@@ -89,7 +112,7 @@ const userSlice =createSlice({
             state.id = null;
         }
     },
-    extraReducers: (builder) => {
+  extraReducers: (builder) => {
       builder
         .addCase(fetchUser.pending, (state) => {
           state.status = 'loading';
@@ -100,9 +123,15 @@ const userSlice =createSlice({
           state.email = action.payload;
         })
         .addCase(fetchUser.rejected, setError)
-        .addCase(deleteUser.rejected, setError);
+        .addCase(deleteUser.rejected, setError)
+
+        .addCase(fetchRecipes.fulfilled, (state, action) => {
+          state.recipes = action.payload;
+        })
+        .addCase(fetchRecipes.rejected, setError);
     }
+    
       
 })
-export const {addUser,removeUser,setUser} = userSlice.actions;
+export const {addUser,removeUser,setUser,setRecipe} = userSlice.actions;
 export default userSlice.reducer;

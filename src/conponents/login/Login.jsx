@@ -5,7 +5,6 @@ import './Login.scss'
 import { BsEye } from "react-icons/bs";
 import { BsEyeSlash } from "react-icons/bs";
 import { MdAlternateEmail } from "react-icons/md";
-import { setUser } from '../../pages/store/slice/UserSlice';
 import { useDispatch,useSelector } from 'react-redux';
 import { fetchUser } from '../../pages/store/slice/UserSlice';
 
@@ -23,10 +22,10 @@ const Login = () => {
     event.preventDefault()
     try{
       const response =dispatch(fetchUser ({
-        username,
-        password,
+        username:username,
+        password:password
       }))
-      if(response.status === 200){
+      if(response.status !== 200){
      
           navigate('/home')
           return 
