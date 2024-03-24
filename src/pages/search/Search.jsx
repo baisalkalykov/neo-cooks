@@ -5,7 +5,7 @@ const Search = () => {
   return (
     <div className='search'>
         <SideNav />
-        <h1>Salam Aleikum Search</h1>
+        <h1> Search</h1>
     </div>
   )
 }

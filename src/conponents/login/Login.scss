@@ -6,8 +6,8 @@
 .login{
     position: relative;
 &__header{
-    padding: 100px 0;
-     background: #FA9E31;
+    padding: 50px 0;
+    background: #FA9E31;
 }    
 &__text-h2{
     text-align: center;
@@ -19,6 +19,7 @@
 } 
 &__container{
     width: 1200px;
+    height: 50vh;
     margin: 0 auto;
 }
 &__form{

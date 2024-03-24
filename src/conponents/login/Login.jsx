@@ -25,7 +25,7 @@ const Login = () => {
         username:username,
         password:password
       }))
-      if(response.status !== 200){
+      if(response.status === 200){
      
           navigate('/home')
           return 
@@ -38,12 +38,7 @@ const Login = () => {
       setError(null);
     }, 5000);
     
-    
    }
-   
-   
- 
-   
   return(
     <>
    

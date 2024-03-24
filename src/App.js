@@ -8,23 +8,21 @@ import Search from './pages/search/Search'
 import './App.scss'
 import LetterEmail from './conponents/letter-email/letterEmail'
 import UserSlice from './pages/store/slice/UserSlice'
+import RecipesCard from './conponents/recipes-card/RecipesCard'
 const App = () => {
-  const isAuth = UserSlice.isAuth
+ 
   return (
     <div className='app'>
-      {isAuth?
-       <Routes>
-       <Route path='/home' element={<Home />} />
-       <Route path='/search' element={<Search />} />
-       <Route path='/profile' element={<Profile/>}/>
-     </Routes> : 
-        <Routes>
-        <Route path='/login' element={<Login />} />
+    
+      <Routes>
+        <Route path='/home' element={<Home />} />
+        <Route path='/search' element={<Search />} />
+        <Route path='/' element={<Login />} />
         <Route path='/registration' element={<Registration />} />
         <Route path='/letter' element={<LetterEmail/>}/>
+        <Route path='/profile' element={<Profile/>}/>
+        <Route path='/recipesCard' element={< RecipesCard/>}/>
       </Routes>
-      }
-     
     </div>
   );
 };

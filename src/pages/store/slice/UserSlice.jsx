@@ -25,12 +25,16 @@ export const fetchRecipes = createAsyncThunk(
   'recipes/fetchRecipes',
   async () => {
     try {
-      const response = await axios.get('https://muha-backender.org.kg/recipes/',{
-        headers: { 
+      // Отправляем запрос для получения данных рецептов
+      const response = await axios.get('https://muha-backender.org.kg/recipes/', {
+        headers: {
+          // Устанавливаем заголовок Authorization с токеном доступа из localStorage
           'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
-      });
-      return response.data; 
+      });    
+      const recipes = response.data;
+      return recipes;
+    
     } catch (error) {
       // Если произошла ошибка, перехватываем ее и отправляем ее в обработчик ошибок createAsyncThunk
       throw new Error('Failed to fetch recipes');
@@ -43,7 +47,7 @@ export const fetchUser = createAsyncThunk(
     async (data,rejectWithValue) => { 
       try {
         const response = await axios.post('https://muha-backender.org.kg/users/login/',data);
-        if(response.status!== 200){
+        if(response.status !== 200){
             throw new Error('server error ')
         }
   
@@ -88,7 +92,6 @@ export const fetchUser = createAsyncThunk(
     id : null,
     recipes: [],
     status: 'idle',
-    isAuth: false,
   };
 const userSlice =createSlice({
     name:'user',
@@ -98,7 +101,7 @@ const userSlice =createSlice({
         state.email = action.payload.email;
         state.token = action.payload.token;
         state.id = action.payload.id;
-       state.isAuth = true;
+     
       },
       setRecipe(state,action){
        state.recipes= action.payload;
@@ -126,7 +129,8 @@ const userSlice =createSlice({
         .addCase(deleteUser.rejected, setError)
 
         .addCase(fetchRecipes.fulfilled, (state, action) => {
-          state.recipes = action.payload;
+          state.recipes = action.payload.Recipes;
+          console.log(state.recipes)
         })
         .addCase(fetchRecipes.rejected, setError);
     }

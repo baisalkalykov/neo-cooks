@@ -1,7 +1,32 @@
 .home{
     display: grid;
     grid-template-columns: 96px 1fr;
+    position: relative;
+    
 &__h1{
-    text-align: center;
-}    
+    font: 400 24px/36px 'Poppins';
+    color: #343434;
+    padding: 20px;
+}   
+&__container{
+    width: 1200px;
+    position: absolute;
+    top: 15%;
+    left: 8%;    
+} 
+&__list{
+    display: flex;
+    align-items: center;
+    gap: 45px;
+    margin-top: 20px;
+}
+&__list-li{
+   list-style: none;
+   cursor: pointer;
+   font: 500 16px/17px 'Poppins';
+}
+&__category{
+    font: 500 24px/36px 'Poppins';
+    color: #343434;
+}
 }
