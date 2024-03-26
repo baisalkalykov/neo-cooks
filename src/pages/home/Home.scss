@@ -29,4 +29,10 @@
     font: 500 24px/36px 'Poppins';
     color: #343434;
 }
+&__cards{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px; 
+    margin-top: 30px;
+}
 }

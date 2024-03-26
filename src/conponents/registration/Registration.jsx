@@ -121,7 +121,7 @@ const handleEyeTwo = () => {
            }}
       >Sign Up
       </button>
-      <Link to={'/login'} className='register__link'>
+      <Link to={'/'} className='register__link'>
        <p className='register__form-p'>Already have an account? <span className='register__form-span'>Sign In Now</span></p>
        </Link>       
     </form>

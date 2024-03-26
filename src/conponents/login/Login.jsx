@@ -18,27 +18,26 @@ const Login = () => {
   };
   const dispatch=useDispatch()
   const navigate= useNavigate()
-  const handleSubmit= (event)=>{
-    event.preventDefault()
-    try{
-      const response =dispatch(fetchUser ({
-        username:username,
-        password:password
-      }))
-      if(response.status === 200){
-     
-          navigate('/home')
-          return 
-        }
-        throw new Error('error')
-    } catch(eror){
-      console.log(eror)
-    }setError('Неверный логин или пароль')
-    setTimeout(() => {
-      setError(null);
-    }, 5000);
-    
-   }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await dispatch(fetchUser({
+        username: username,
+        password: password
+      }));
+      if (response ) {
+        navigate('/home');
+        return;
+      } else {
+        throw new Error('error');
+      }
+    } catch (error) {
+      setError('Неверный логин или пароль');
+      setTimeout(() => {
+        setError(null);
+      }, 5000);
+    }
+  };
   return(
     <>
    

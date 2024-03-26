@@ -1,4 +1,93 @@
 .search{
     display: grid;
     grid-template-columns: 96px 1fr;
+    position: relative;
+
+&__title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+&__text{
+    font: 500 24px/36px 'Poppins';
+    color: #343434;
+}
+&__category{
+    width: 480px;
+    height: 60px;
+    background: #FFF6DE;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 100px;
+    margin-top: 20px;
+}    
+&__box{
+    width: 222px;
+    height: 44px;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+&__category-tex{
+    font: 500 16px/28px 'Poppins';
+    cursor: pointer;
+}
+&__in{
+    position: absolute;
+    top: 20%;
+    left: 10%;
+}
+&__input{
+    width: 1200px;
+    height: 56px;
+    border-radius: 42px;
+    outline: #FA9E31;
+    border: none;
+    background: #EDEDED;
+    padding-left: 20px;
+    color: #343434;
+    font: 400 16px/24px 'Poppins';
+}
+&__icon{
+    position: absolute;
+    top: 20%;
+    right: 2%;
+    width: 24px;
+    height: 24px;
+}
+&__btn{
+    width: 480px;
+    height: 56px;
+    border: none;
+    border-radius: 41px;
+    background: #FA9E31;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    position: absolute;
+    top: 60%;
+    left: 40%;
+    color: #EDEDED;
+    cursor: pointer;
+    font: 400 16px/24px 'Poppins';
+}
+&__btn-svg{
+    width: 24px;
+    height: 24px;
+    border-radius: 100%;
+    background: #EDEDED;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+&__btn-p{
+    color: #FA9E31;
+    font-size: 20px;
+}
 }

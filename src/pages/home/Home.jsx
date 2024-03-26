@@ -44,7 +44,7 @@ const Home = () => {
     setActive(tab.viewTab);
     setCategory(tab.postTab);
   };
-
+   
   return (
     <div className="home">
       <SideNav />
@@ -63,9 +63,12 @@ const Home = () => {
             </li>
           ))}
         </div>
-        {recipes.map(recipe => (
+        <div className="home__cards">
+         {recipes.map(recipe => (
           <RecipesCard recipe={recipe} key={recipe.id} />
         ))}
+        </div>
+       
       </div>
     </div>
   );

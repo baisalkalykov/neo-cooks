@@ -1,0 +1,13 @@
+.modal{
+&__overlay{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 1420px;
+    height: 100%;
+    background: #34343473; /* Затемнение с использованием полупрозрачного черного цвета */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+}

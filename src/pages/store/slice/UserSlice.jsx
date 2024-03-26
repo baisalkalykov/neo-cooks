@@ -29,7 +29,7 @@ export const fetchRecipes = createAsyncThunk(
       const response = await axios.get('https://muha-backender.org.kg/recipes/', {
         headers: {
           // Устанавливаем заголовок Authorization с токеном доступа из localStorage
-          'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+          'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzExNDI5NTU2LCJpYXQiOjE3MTE0Mjg5NTYsImp0aSI6IjhiMWM1OGY0NjdkMTQyOWM4OGQ1NDA4OWQ2OWI5ZWEzIiwidXNlcl9pZCI6MTB9.syNP-NVuAmbOoKuCn6OrnczfP6xtuZUHk1sGKPfZrhU`
         }
       });    
       const recipes = response.data;
@@ -54,9 +54,7 @@ export const fetchUser = createAsyncThunk(
         localStorage.setItem('accessToken',response.data.tokens.access)
         localStorage.setItem('refreshToken',response.data.tokens.refresh)
        return response.data
-        
       }
-       
       catch (error) {
        return rejectWithValue(error.message)
       }
