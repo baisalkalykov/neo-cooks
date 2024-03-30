@@ -29,7 +29,7 @@ export const fetchRecipes = createAsyncThunk(
       const response = await axios.get('https://muha-backender.org.kg/recipes/', {
         headers: {
           // Устанавливаем заголовок Authorization с токеном доступа из localStorage
-          'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzExNDI5NTU2LCJpYXQiOjE3MTE0Mjg5NTYsImp0aSI6IjhiMWM1OGY0NjdkMTQyOWM4OGQ1NDA4OWQ2OWI5ZWEzIiwidXNlcl9pZCI6MTB9.syNP-NVuAmbOoKuCn6OrnczfP6xtuZUHk1sGKPfZrhU`
+          'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzExNzc4NDk3LCJpYXQiOjE3MTE3Nzc4OTcsImp0aSI6ImI0MmMwNzFmZmE1MzQ2ZGJhZTlmNjQ1M2I0YmVkMmFhIiwidXNlcl9pZCI6MTB9.peZksP-w-4eYaPD8IkyRHPAnbZKDQ34fTdJx6vCteYw`
         }
       });    
       const recipes = response.data;
@@ -78,6 +78,22 @@ export const fetchUser = createAsyncThunk(
 
     }
   );
+  export const searchRecipes = createAsyncThunk(
+    'recipes/searchRecipes',
+    async (searchQuery, thunkAPI) => {
+      try {
+        const token = localStorage.getItem('accessToken'); // Получаем токен доступа из localStorage
+        const response = await axios.get(`https://muha-backender.org.kg/recipes/?search=${searchQuery}`, {
+          headers: {
+            'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzExNzc4NDk3LCJpYXQiOjE3MTE3Nzc4OTcsImp0aSI6ImI0MmMwNzFmZmE1MzQ2ZGJhZTlmNjQ1M2I0YmVkMmFhIiwidXNlcl9pZCI6MTB9.peZksP-w-4eYaPD8IkyRHPAnbZKDQ34fTdJx6vCteYw`, // Добавляем токен доступа в заголовок запроса
+          },
+        });
+        return response.data;
+      } catch (error) {
+        throw new Error('Failed to search recipes');
+      }
+    }
+  );
 
   const setError= (state, action) => {
     state.status = 'rejected';
@@ -101,19 +117,24 @@ const userSlice =createSlice({
         state.id = action.payload.id;
      
       },
+
       setRecipe(state,action){
        state.recipes= action.payload;
       },
         addUser(state,action) {
           state.user.push(action.payload)
         },
+        setSearchResults(state, action) {
+          state.recipes = action.payload;
+        },
         removeUser(state){
             state.email = null;
             state.token = null;
             state.id = null;
-        }
+        },
+        
     },
-  extraReducers: (builder) => {
+    extraReducers: (builder) => {
       builder
         .addCase(fetchUser.pending, (state) => {
           state.status = 'loading';
@@ -125,15 +146,26 @@ const userSlice =createSlice({
         })
         .addCase(fetchUser.rejected, setError)
         .addCase(deleteUser.rejected, setError)
-
         .addCase(fetchRecipes.fulfilled, (state, action) => {
           state.recipes = action.payload.Recipes;
-          console.log(state.recipes)
+          console.log(state.recipes);
         })
-        .addCase(fetchRecipes.rejected, setError);
+        .addCase(fetchRecipes.rejected, setError)
+        .addCase(searchRecipes.pending, (state) => {
+          state.status = 'loading';
+          state.error = null;
+        })
+        .addCase(searchRecipes.fulfilled, (state, action) => {
+          state.status = 'resolved';
+          state.recipes = action.payload;
+        })
+        .addCase(searchRecipes.rejected, (state, action) => {
+          state.status = 'rejected';
+          state.error = action.error.message;
+        });
     }
     
       
 })
-export const {addUser,removeUser,setUser,setRecipe} = userSlice.actions;
+export const {addUser,removeUser,setUser,setRecipe,} = userSlice.actions;
 export default userSlice.reducer;

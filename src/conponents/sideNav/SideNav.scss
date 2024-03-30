@@ -21,7 +21,6 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    background: #FAFAFA;
 }
 &__link{
     text-decoration: none;
@@ -29,4 +28,17 @@
     color: black;
 }
    
+}
+.active-link{
+    background: #FA9E31;
+    color: rgb(242, 233, 233) !important;
+    text-decoration: none;
+    border-radius: 10px;
+}
+.link{
+    text-decoration: none;
+    background: transparent;
+    color: black;
+    background: #FAFAFA;
+    border-radius: 10px;
 }

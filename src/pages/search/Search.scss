@@ -1,8 +1,15 @@
 .search{
     display: grid;
     grid-template-columns: 96px 1fr;
-    position: relative;
-
+ 
+&__container{
+    width: 1200px;
+    margin: 0 auto ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
 &__title{
     display: flex;
     flex-direction: column;
@@ -37,9 +44,7 @@
     cursor: pointer;
 }
 &__in{
-    position: absolute;
-    top: 20%;
-    left: 10%;
+   position: relative;
 }
 &__input{
     width: 1200px;
@@ -69,9 +74,6 @@
     align-items: center;
     justify-content: center;
     gap: 15px;
-    position: absolute;
-    top: 60%;
-    left: 40%;
     color: #EDEDED;
     cursor: pointer;
     font: 400 16px/24px 'Poppins';
@@ -89,5 +91,30 @@
 &__btn-p{
     color: #FA9E31;
     font-size: 20px;
+}
+&__cards{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px; 
+}
+&__card{
+    width: 309px;
+    height: 258px;
+    border-radius: 15px;
+} 
+&__card:hover{
+    transition: .3s;
+      transform: translateY(-10px);
+      box-shadow: 10px 12px 20px -14px rgba(0,0,0,.75);
+}
+&__card-img{
+    width: 309px;
+    height: 208px;
+    border-radius: 15px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 49.93%, rgba(0, 0, 0, 0.61) 100%);
+}
+&__card-text{
+    font: 500 20px/30px 'Poppins';
+    color: #0e0e0e;
 }
 }

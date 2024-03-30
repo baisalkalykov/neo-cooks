@@ -1,13 +1,138 @@
-.modal{
-&__overlay{
+.modal {
+&__overlay {
     position: fixed;
     top: 0;
     right: 0;
-    width: 1420px;
+     width: 100%;
     height: 100%;
-    background: #34343473; /* Затемнение с использованием полупрозрачного черного цвета */
+    background: #34343473; 
     display: flex;
     justify-content: center;
     align-items: center;
-} 
+}
+    
+&__form {
+    width: 544px;
+    height: 844px; 
+    border-radius: 28px;
+    background: #FFFFFF;
+    position: relative;
+}
+&__form-p{
+    text-align: center;
+    padding-top: 20px;
+    font: 500 24px/36px 'Poppins';
+    color: #343434;
+}
+&__form-svg{
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    top: 5%;
+    right: 10%;
+    cursor: pointer;
+}
+&__form-des{
+    margin: 10px 30px;
+    display: flex;
+    flex-direction: column;
+}
+&__form-label{
+    font: 500 16px/21px 'Poppins';
+    color: #666666;
+}
+&__form-img{
+    width: 480px;
+    height: 93px;
+    border-radius: 20px;
+    border: 1px solid #8A8A8A;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+&__form-input{
+    width: 480px;
+    height: 56px;
+    border-radius: 20px;
+    border: 1px solid #8A8A8A;
+    outline: none; 
+    font: 500 17px/21px 'Poppins';
+    padding-left: 15px;
+    background: #EDEDED;
+}
+
+&__form-input:focus {
+    border-color: #FA9E31; /* Цвет рамки при фокусе */
+}
+&__form-box{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+&__form-in{
+  width: 285px;
+  height: 56px;
+  border-radius: 42px;
+  background: #EDEDED;
+  font: 500 17px/21px 'Poppins';
+  outline: none; 
+  border: 1px solid #8A8A8A;
+  padding-left: 15px;
+}
+&__form-in:focus {
+    border-color: #FA9E31; /* Цвет рамки при фокусе */
+}
+&__form-select{
+    width: 123px;
+    height: 56px;
+    border: 1px solid #8A8A8A;
+    background: #EDEDED;
+    border-radius: 16px;
+    outline: none;
+}
+&__form-select:focus {
+    border-color: #FA9E31; /* Цвет рамки при фокусе */
+}
+&__form-count{
+    width: 44px;
+    height: 44px;
+    border-radius: 100%;
+    background: #FA9E31;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+&__form-calc{
+    color: #FFFFFF;
+    font-size: 30px;
+    cursor: pointer;
+}
+&__form-dif{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+&__form-difficulty{
+   width: 100px;
+   height: 56px;
+   background: #EDEDED;
+   border-radius: 100px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+&__form-tab{
+    font: 400 16px/24px 'Poppins';
+    cursor: pointer;
+}
+&__form-btn{
+    width: 480px;
+    height: 56px;
+    border-radius: 42px;
+    border: none;
+    background: #8A8A8A;
+    font: 500 17px/21px 'Poppins';
+    color: #FFFFFF;
+    cursor: pointer;
+}
 }

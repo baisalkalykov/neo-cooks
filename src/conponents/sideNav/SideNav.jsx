@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './SideNav.scss'
 import { SideNavDate } from '../sideNavData/SideNavDate';
 import logo from '../../asset-img/logo.png'
@@ -14,13 +14,11 @@ const SideNav = () => {
         <img src={logo} alt="logo" className="sideNav__logo-img" />
       </div>
       {SideNavDate.map((el, key) => (
-        <Link to={el.link} key={key} className='sideNav__link'>
-          <div className='sideNav__icon'
-            style={{ background: active === el.icon ? '#FA9E31' : '' }}
-          >
+        <NavLink to={el.link} key={key} className={({isActive})=>isActive? 'active-link':'link'}>
+          <div className='sideNav__icon' >
             {el.icon}
           </div>
-        </Link>
+       </NavLink>
       ))}
     </div>
     </>

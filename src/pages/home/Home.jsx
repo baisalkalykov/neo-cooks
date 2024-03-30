@@ -48,6 +48,7 @@ const Home = () => {
   return (
     <div className="home">
       <SideNav />
+      <div className="home_content">
       <h1 className="home__h1">Hi, Sarthak. UI Designer & Cook</h1>
       <div className="home__container">
         <p className="home__category">Category</p>
@@ -70,6 +71,8 @@ const Home = () => {
         </div>
        
       </div>
+      </div>
+      
     </div>
   );
 };

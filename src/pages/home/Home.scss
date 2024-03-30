@@ -2,7 +2,10 @@
     display: grid;
     grid-template-columns: 96px 1fr;
     position: relative;
-    
+&__content{
+  
+    margin: 50px ;
+}     
 &__h1{
     font: 400 24px/36px 'Poppins';
     color: #343434;
@@ -10,9 +13,8 @@
 }   
 &__container{
     width: 1200px;
-    position: absolute;
-    top: 15%;
-    left: 8%;    
+    margin: 50px ;
+  
 } 
 &__list{
     display: flex;

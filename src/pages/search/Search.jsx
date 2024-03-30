@@ -1,11 +1,12 @@
 import React from 'react'
 import SideNav from '../../conponents/sideNav/SideNav'
-import { useState } from 'react'
+import { useState , useEffect} from 'react'
 import './Search.scss'
 import { IoSearch } from "react-icons/io5";
 import AddRecipe from '../../conponents/search-modal/AddRecipe';
 import { useParams } from 'react-router-dom';
-
+import { useDispatch ,useSelector } from 'react-redux'
+import {searchRecipes} from '../store/slice/UserSlice'
 const Search = () => {
   function Tab() {
     return [
@@ -28,9 +29,24 @@ const Search = () => {
   };
   const [ModalActive, SetModalActive]=useState(false)
   const { id } = useParams();
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const dispatch = useDispatch();
+  const recipes = useSelector(state => state.user.recipes);
+  const status = useSelector(state => state.user.status);
+  useEffect(() => {
+    if (status === 'idle' && searchQuery !== '') {
+      dispatch(searchRecipes(searchQuery));
+    }
+  }, [dispatch, searchQuery, status]);
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+    dispatch(searchRecipes(e.target.value));
+  };
   return (
     <div className='search'>
         <SideNav />
+        <div className="search__container">
        <div className="search__title">
         <p className='search__text'>What to eat today?</p>
         <div className="search__category">
@@ -51,11 +67,24 @@ const Search = () => {
         </div>
        </div>
        <div className="search__in">
-       <input type="text"
+       <input 
+          type="text"
           className='search__input'
-          placeholder='Search recipes' />
+          placeholder='Search recipes' 
+          onChange={handleSearch}
+          value={searchQuery}
+          />
        <IoSearch className='search__icon' />
        </div>
+       <div className='search__cards'>
+        {Array.isArray(recipes) && recipes.map(recipe => (
+         <div key={recipe.id} className='search__card'>
+          <img src={recipe.image} alt={recipe.title} className='search__card-img' />
+          <h3 className='search__card-text'>{recipe.recipe_name}</h3>
+      
+        </div>
+       ))}
+     </div>
       <button   
           className='search__btn'
           onClick={()=>SetModalActive(true)}
@@ -66,7 +95,7 @@ const Search = () => {
            Add your recipe
        </button>
      <AddRecipe active={ModalActive} setActive={SetModalActive} id={id}/>
-     <h2>ghjkl;</h2>
+     </div>
     </div>
   )
 }
