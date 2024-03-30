@@ -26,12 +26,15 @@ export const fetchRecipes = createAsyncThunk(
   async () => {
     try {
       // Отправляем запрос для получения данных рецептов
+      const token = localStorage.getItem('accessToken')
+      
       const response = await axios.get('https://muha-backender.org.kg/recipes/', {
         headers: {
           // Устанавливаем заголовок Authorization с токеном доступа из localStorage
-          'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzExNzc4NDk3LCJpYXQiOjE3MTE3Nzc4OTcsImp0aSI6ImI0MmMwNzFmZmE1MzQ2ZGJhZTlmNjQ1M2I0YmVkMmFhIiwidXNlcl9pZCI6MTB9.peZksP-w-4eYaPD8IkyRHPAnbZKDQ34fTdJx6vCteYw`
+          'Authorization': `Bearer ${token}`
         }
       });    
+     
       const recipes = response.data;
       return recipes;
     
@@ -78,22 +81,7 @@ export const fetchUser = createAsyncThunk(
 
     }
   );
-  export const searchRecipes = createAsyncThunk(
-    'recipes/searchRecipes',
-    async (searchQuery, thunkAPI) => {
-      try {
-        const token = localStorage.getItem('accessToken'); // Получаем токен доступа из localStorage
-        const response = await axios.get(`https://muha-backender.org.kg/recipes/?search=${searchQuery}`, {
-          headers: {
-            'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzExNzc4NDk3LCJpYXQiOjE3MTE3Nzc4OTcsImp0aSI6ImI0MmMwNzFmZmE1MzQ2ZGJhZTlmNjQ1M2I0YmVkMmFhIiwidXNlcl9pZCI6MTB9.peZksP-w-4eYaPD8IkyRHPAnbZKDQ34fTdJx6vCteYw`, // Добавляем токен доступа в заголовок запроса
-          },
-        });
-        return response.data;
-      } catch (error) {
-        throw new Error('Failed to search recipes');
-      }
-    }
-  );
+  
 
   const setError= (state, action) => {
     state.status = 'rejected';
@@ -124,9 +112,7 @@ const userSlice =createSlice({
         addUser(state,action) {
           state.user.push(action.payload)
         },
-        setSearchResults(state, action) {
-          state.recipes = action.payload;
-        },
+        
         removeUser(state){
             state.email = null;
             state.token = null;
@@ -151,18 +137,8 @@ const userSlice =createSlice({
           console.log(state.recipes);
         })
         .addCase(fetchRecipes.rejected, setError)
-        .addCase(searchRecipes.pending, (state) => {
-          state.status = 'loading';
-          state.error = null;
-        })
-        .addCase(searchRecipes.fulfilled, (state, action) => {
-          state.status = 'resolved';
-          state.recipes = action.payload;
-        })
-        .addCase(searchRecipes.rejected, (state, action) => {
-          state.status = 'rejected';
-          state.error = action.error.message;
-        });
+        
+       
     }
     
       

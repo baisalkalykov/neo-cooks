@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 96px 1fr;
     position: relative;
+    list-style: none;
 &__content{
   
     margin: 50px ;
@@ -23,7 +24,6 @@
     margin-top: 20px;
 }
 &__list-li{
-   list-style: none;
    cursor: pointer;
    font: 500 16px/17px 'Poppins';
 }

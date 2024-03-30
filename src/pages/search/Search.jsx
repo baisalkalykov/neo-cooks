@@ -6,7 +6,7 @@ import { IoSearch } from "react-icons/io5";
 import AddRecipe from '../../conponents/search-modal/AddRecipe';
 import { useParams } from 'react-router-dom';
 import { useDispatch ,useSelector } from 'react-redux'
-import {searchRecipes} from '../store/slice/UserSlice'
+import { searchRecipes } from '../store/slice/SearchSlice';
 const Search = () => {
   function Tab() {
     return [
