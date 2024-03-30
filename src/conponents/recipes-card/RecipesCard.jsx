@@ -1,5 +1,6 @@
 import React from 'react'
 import './RecipesCard.scss'
+
 const RecipesCard = ({recipe}) => {
   return (
     <div className="recipes">

@@ -3,7 +3,7 @@ import SideNav from '../../conponents/sideNav/SideNav'
 import { useState , useEffect} from 'react'
 import './Search.scss'
 import { IoSearch } from "react-icons/io5";
-import AddRecipe from '../../conponents/search-modal/AddRecipe';
+import AddRecipe from '../../conponents/add-recipe/AddRecipe';
 import { useParams } from 'react-router-dom';
 import { useDispatch ,useSelector } from 'react-redux'
 import { searchRecipes } from '../store/slice/SearchSlice';
@@ -32,8 +32,8 @@ const Search = () => {
 
   const [searchQuery, setSearchQuery] = useState('');
   const dispatch = useDispatch();
-  const recipes = useSelector(state => state.user.recipes);
-  const status = useSelector(state => state.user.status);
+  const recipes = useSelector(state => state.search.recipes);
+  const status = useSelector(state => state.search.status);
   useEffect(() => {
     if (status === 'idle' && searchQuery !== '') {
       dispatch(searchRecipes(searchQuery));

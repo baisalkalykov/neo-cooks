@@ -3,11 +3,14 @@ import { useEffect,useState } from 'react'
 import SideNav from '../../conponents/sideNav/SideNav'
 import './Home.scss'
 import RecipesCard from '../../conponents/recipes-card/RecipesCard'
-import { fetchRecipes,setRecipe} from '../../pages/store/slice/UserSlice'
+import { fetchRecipes,setRecipe} from '../../pages/store/slice/ResipeSlice'
 import { useDispatch,useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+
+
 const Home = () => {
   const dispatch = useDispatch();
-  const recipes = useSelector(state => state.user.recipes);
+  const recipes = useSelector(state => state.resipe.recipes);
   const status = useSelector(state => state.user.status);
 
   useEffect(() => {
@@ -65,9 +68,13 @@ const Home = () => {
           ))}
         </div>
         <div className="home__cards">
+     
          {recipes.map(recipe => (
-          <RecipesCard recipe={recipe} key={recipe.id} />
+            <Link to={`triprecipe/${recipe.id}/`} className='home__link' key={recipe.id}>
+              <RecipesCard recipe={recipe} key={recipe.id} />
+          </Link>
         ))}
+       
         </div>
        
       </div>

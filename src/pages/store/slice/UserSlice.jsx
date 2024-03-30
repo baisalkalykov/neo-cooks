@@ -21,30 +21,6 @@ export const addUsers = createAsyncThunk(
   }
 );
 
-export const fetchRecipes = createAsyncThunk(
-  'recipes/fetchRecipes',
-  async () => {
-    try {
-      // Отправляем запрос для получения данных рецептов
-      const token = localStorage.getItem('accessToken')
-      
-      const response = await axios.get('https://muha-backender.org.kg/recipes/', {
-        headers: {
-          // Устанавливаем заголовок Authorization с токеном доступа из localStorage
-          'Authorization': `Bearer ${token}`
-        }
-      });    
-     
-      const recipes = response.data;
-      return recipes;
-    
-    } catch (error) {
-      // Если произошла ошибка, перехватываем ее и отправляем ее в обработчик ошибок createAsyncThunk
-      throw new Error('Failed to fetch recipes');
-    }
-  }
-);
-
 export const fetchUser = createAsyncThunk(
     'user/fetchUser', 
     async (data,rejectWithValue) => { 
@@ -92,7 +68,6 @@ export const fetchUser = createAsyncThunk(
     email: null,
     token : null,
     id : null,
-    recipes: [],
     status: 'idle',
   };
 const userSlice =createSlice({
@@ -106,9 +81,7 @@ const userSlice =createSlice({
      
       },
 
-      setRecipe(state,action){
-       state.recipes= action.payload;
-      },
+      
         addUser(state,action) {
           state.user.push(action.payload)
         },
@@ -126,22 +99,15 @@ const userSlice =createSlice({
           state.status = 'loading';
           state.error = null;
         })
-        .addCase(fetchUser.fulfilled, (state, action) => {
-          state.status = 'resolved';
-          state.email = action.payload;
-        })
-        .addCase(fetchUser.rejected, setError)
+     
         .addCase(deleteUser.rejected, setError)
-        .addCase(fetchRecipes.fulfilled, (state, action) => {
-          state.recipes = action.payload.Recipes;
-          console.log(state.recipes);
-        })
-        .addCase(fetchRecipes.rejected, setError)
+      
+        
         
        
     }
     
       
 })
-export const {addUser,removeUser,setUser,setRecipe,} = userSlice.actions;
+export const {addUser,removeUser,setUser,} = userSlice.actions;
 export default userSlice.reducer;

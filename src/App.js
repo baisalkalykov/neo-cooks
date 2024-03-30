@@ -7,8 +7,8 @@ import Home from './pages/home/Home'
 import Search from './pages/search/Search'
 import './App.scss'
 import LetterEmail from './conponents/letter-email/letterEmail'
-import UserSlice from './pages/store/slice/UserSlice'
 import RecipesCard from './conponents/recipes-card/RecipesCard'
+import TripRecipes from './conponents/trip-recepis/TripRecipes'
 const App = () => {
  
   return (
@@ -22,6 +22,7 @@ const App = () => {
         <Route path='/letter' element={<LetterEmail/>}/>
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/recipesCard' element={< RecipesCard/>}/>
+        <Route path='/triprecipe/:id'element={<TripRecipes/>}/>
       </Routes>
     </div>
   );
