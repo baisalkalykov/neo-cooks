@@ -8,7 +8,7 @@ import Search from './pages/search/Search'
 import './App.scss'
 import LetterEmail from './conponents/letter-email/letterEmail'
 import RecipesCard from './conponents/recipes-card/RecipesCard'
-import TripRecipes from './conponents/trip-recepis/TripRecipes'
+import DesRecipes from './conponents/des-recepis/DesRecipes'
 const App = () => {
  
   return (
@@ -22,7 +22,7 @@ const App = () => {
         <Route path='/letter' element={<LetterEmail/>}/>
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/recipesCard' element={< RecipesCard/>}/>
-        <Route path='/triprecipe/:id'element={<TripRecipes/>}/>
+        <Route path='/desrecipe/:id' element={<DesRecipes/>}/>
       </Routes>
     </div>
   );

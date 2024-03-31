@@ -3,10 +3,11 @@ import SideNav from '../../conponents/sideNav/SideNav'
 import { useState , useEffect} from 'react'
 import './Search.scss'
 import { IoSearch } from "react-icons/io5";
-import AddRecipe from '../../conponents/add-recipe/AddRecipe';
 import { useParams } from 'react-router-dom';
 import { useDispatch ,useSelector } from 'react-redux'
 import { searchRecipes } from '../store/slice/SearchSlice';
+import AddRecipe from '../../conponents/search-modal/AddRecipe';
+
 const Search = () => {
   function Tab() {
     return [
@@ -94,7 +95,7 @@ const Search = () => {
         </span>
            Add your recipe
        </button>
-     <AddRecipe active={ModalActive} setActive={SetModalActive} id={id}/>
+       <AddRecipe active={ModalActive} setActive={SetModalActive}/>
      </div>
     </div>
   )

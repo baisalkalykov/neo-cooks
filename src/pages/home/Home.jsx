@@ -70,7 +70,7 @@ const Home = () => {
         <div className="home__cards">
      
          {recipes.map(recipe => (
-            <Link to={`triprecipe/${recipe.id}/`} className='home__link' key={recipe.id}>
+            <Link to={`/desrecipe/${recipe.id}`} className='home__link' key={recipe.id}>
               <RecipesCard recipe={recipe} key={recipe.id} />
           </Link>
         ))}
